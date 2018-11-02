@@ -1,0 +1,46 @@
+<div class="ui grid">
+  <div class="four wide column"></div>
+  <div class="eight wide column">
+    <div class="ui segment">
+      <div class="ui minimal comments">
+        <h3 class="ui dividing header">留言</h3>
+
+        <% if (comments.length) { %>
+          <% comments.forEach(function (comment) { %>
+            <div class="comment">
+              <span class="avatar">
+                <img src="/img/<%= comment.avatar %>">
+              </span>
+              <div class="content">
+                <a class="author" href="/posts?author=<%= comment.name %>"><%= comment.name %></a>
+                <div class="metadata">
+                  <span class="date"><%= comment.date %></span>
+                </div>
+                <div class="text"><%- comment.comment %></div>
+
+                <% if (user && comment.name && user.name === comment.name) { %>
+                  <div class="actions">
+                    <a class="reply" href="/comments/<%= comment.cid %>/delete">删除</a>
+                  </div>
+                <% } %>
+              </div>
+            </div>
+          <% }) %>
+
+          <% if (user) { %>
+            <form class="ui reply form" method="post" action="/comments">
+              <input name="postId" value="<%= post.id %>" hidden>
+              <div class="field">
+                <textarea name="content"></textarea>
+              </div>
+              <input type="submit" class="ui icon button" value="留言" />
+            </form>
+          <% } %>
+      	<% } else { %>
+      		<div style="width: 100%;margin: 40px auto;text-align: center; font-size: 16px;">还没有人来留言哦</div>
+      	<% } %>
+
+      </div>
+    </div>
+  </div>
+</div>

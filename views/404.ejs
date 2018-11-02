@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= blog.title %></title>
+    <style media="screen">
+        .container {
+          width: 100%;
+          padding-top: 100px;
+          display: flex;
+          justify-content: center;
+        }
+        img {
+          width: 600px;
+          height: 450px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <img src="/img/404.png" alt="" id="img">
+    </div>
+  </body>
+  <script type="text/javascript">
+      var oImg = document.getElementById('img')
+      oImg.onclick = function() {
+        window.location.href = '/posts'
+      }
+  </script>
+</html>
